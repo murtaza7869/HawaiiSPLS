@@ -1,0 +1,2032 @@
+﻿;Copyright 1995-2017 Freedom Scientific, Inc.
+; JAWS default configuration file
+
+; The following list of options are saved specific to a Braile display:
+; Dot Firmness, status cell pos, how many status cells, word wrap,
+; autopan and user pan modes, autoadvance interval, dynamicAutoAdvance
+;	Structured Mode alignment, inclusion flags and use of status cells for control type,
+; and Structured Mode Reverse order
+;	All other settings are read from the general Braille section.
+; This is the general Braille section.
+; This section contains all settings common to all Displays.
+; Any legacy display which does not have its own section will also use settings from here.
+; Display specific settings are also included here for legacy display which do not have their own section.
+; Displays which have their own section however do not inherit from these Display specific settings.
+[Braille]
+;Display Specific settings.
+; How long to show each display worth of text for (in ms) when autoadvance is on.
+AutoAdvanceInterval=5000
+;0 off (fixed), 1 dynamic
+DynamicAutoAdvance=1
+;0=Best Fit Panning (don't break words)
+;1=use fixed increment when panning
+;2=maximize text on display (like best fit but allow overlap of previously shown text to maximize context information)
+;3=pan by structured segment or component (such as name, value, type, etc)
+;255=Smart User Pannning, ie choose best algorithm for situation
+BraillePanMode=255
+; AutoPan Algorithm
+;0=off, 1=move display minimally to include whole word containing cursor,
+;2=MatchUserPan, 3=move display to show whole word at cursor nearest the middle of the display area,
+;4=maximize text after cursor,
+;5=maximize text before cursor,
+;For autopan to default structured segment, see the StructuredModeAlignToSegment key
+;1=Smart Autopan, autopan using the best algorithm for the current situation
+AutoPanMode=1
+; Whether or not to allow words to be split in order to maximize the use of the Braille display.
+;Ignored if panning is set to fixed increment
+WordWrap=1
+;Dot Firmness
+DotFirmness=4
+;Where should status cells be displayed if the display supports custom layout
+PositionOfStatusCells=0
+;how many cells to use for status information if the display defines none of its own
+UseHowManyStatusCells=4
+UseStatusCellsForControlType=1
+StructuredModeAlignToSegment=1
+;flags used by Structured Mode internal code to determine which components to include on the display
+StructuredModeInclusionFlags=65535
+;If off, order is dlg info|group info|focus info
+;If on, order is focus info|group info|dialog info
+StructuredModeReverseOrder=1;
+;Braille General settings common to all displays.
+;The following options are relevant to all displays and are only read from this section.
+;Overriding the following settings in a Display's specific section will have no effect.
+;0 force DOM, 1 legacy use DOM except in edits, 2 hybrid, 3 always use OSM.
+UseOSM=1
+;Whether or not panning buttons are reversed.
+ReversePanningButtons=0
+; Allow contracted Braille to be entered on the display's keyboard and have it automatically backtranslated into tyor application.
+;0 off, 1 on.
+ContractedBrailleInput=0
+;0 off, distinguish each bullet type, 1 treat all bullets the same
+GeneralizeBullets=0
+;allow words to break at dash, at symbol, slash and backslash, improves display usage when viewing paths and web/email addresses
+CustomWordDelimiters=045,047,064,092,160
+;Sets Braille verbosity for Flash messages
+;0 beginner, 1 intermediate, 2 advanced
+BrailleVerbosity=0
+;When Grade 2 is on, whether or not to show capital indicators
+Grade2SuppressCapitalSigns=0
+;Whether or not to show Flash Messages
+BrailleMessages=1
+;If a display has no Status Cells, whether or not to prepend the Message Prefix to the Flash Message
+MessagePrefixes=1
+;when a Flash message is sent to the display via a script, how long it should be shown for if not specified by the script.
+;measured in milliseconds
+MessageTime=5000
+;The text to show in the status area of the display when a Flash message is being shown
+;if the display has no status cells, the text will be prepended to the Flash message
+MessageStatusText=msg
+; Whether or not to filter certain control characters (currently newlines, linefeeds and tabs)
+FilterControlCharacters=1
+;When in Attribute Mode and characters have multiple attributes, determines
+;how long each attribute should be shown for. This value is in Milliseconds.
+attributeRotationDelay=1000
+; 1=pressing a keystroke in the Braille display will interrupt speech
+; 0=it won't
+BrailleKeyInterruptSpeech=1
+; 1 grade 2 Braille translation on, 0 off
+Grade2Translation=0
+; 1 expand current word, 0 translate the whole line. Only relevant when grade 2 translation is on.
+Grade2ExpandCurrentWord=1
+; Line=0, Structured=1, Speech Output=2, Attribute Indicators=3
+BrailleMode=1
+;When the Braille cursor moves: 0 don't move the active cursor, 1 move the active cursor along with the Braille cursor
+BrailleMoveActiveCursor=0
+; 1=automatically route the Braille display to the active  cursor whenever
+; the active cursor moves or a key on the keyboard is pressed
+; 0=never automatically route the Braille display to the active cursor
+BrailleAutoRouteToCursor=1
+; eight dot braille mode    0=six dots mode, 1 = eight dots mode
+EightDotBraille=1
+; Set to 1 for the cursor to be shown as all dots raised, 0 to show it
+;using dots seven and eight only
+AllDotsBrailleCursor=0
+;Speed, in milliseconds, at which the cursor on the Braille display
+;should blink
+BrailleCursorBlinkRate=500
+; Name of  Braille Translation table.
+; should be name of a .JBT file in the JFW root directory, devoid
+; of the JBT extension
+BrailleTranslationTable=US_Unicode
+;delimited list of preferred Braille tables which will be cycled through when the BrailleCyclePreferredTranslationTable script is invoked.
+PreferredTranslationTables=US_Unicode
+; Mode setting for braille translation.
+; If your braille translator supports mode settings then set it with this parameter:
+TranslatorMode=20
+;  Show Marking may be any combination of the following ored together
+;		brlMarkNothing= 0,
+;		brlMarkText = 1,
+;		brlMarkBold = 2,
+;		brlMarkItalic = 4,
+;		brlMarkUnderline = 8,
+;		brlMarkStrikeout = 16,
+;		brlMarkGraphic = 32,
+;		brlMarkHighlight = 64,
+;		brlMarkColor= 128, // see brlOptColorsToMark string option
+;		brlMarkExtended=256, // things like spelling and grammatical errors in MSWord etc, script defined marking
+;		brlMarkDoubleStrikeout=512,
+;		brlMarkSuperscript=1024,
+;		brlMarkSubscript=2048,
+;		brlMarkShadow=4096,
+;		brlMarkOutline=8192,
+;		brlMarkEmboss=16384,
+;		brlMarkEngrave=32768,
+;Note when Extended marking is on, JAWS calls the
+;  PointNeedsMarking function passing in the coordinates of each cell to
+;  determine whether text at that location requires marking. This is useful when
+;  the attribute you want to mark is not actually known to JAWS such as the red
+;  and green zigzags in MSWord indicating spelling or grammatical errors.
+BrailleShowMarking=64
+;Note the BrailleMarkColors settings only has an effect if the BrailleMarking option
+;includes marking colors, ie is set to at least 32.
+;set the BrailleMarkColors to a string defining each set of text/background
+;colors to mark. To ignore a color, use *.
+;for example, to mark red on anything use 255000000/*.
+;You may define up to 9 sets of colors. Separate each set with a comma.
+; A valid string would look like the following:
+;mark red on anything or blue on white.
+;use the string 255000000/*,000000255/255255255
+BrailleMarkColors=
+; Set to 1 to turn off Braille driver, typically used to disable
+;Braille for a specific application
+BrailleSleepMode=0
+BraillePCCursorDots=78
+BrailleJAWSCursorDots=78
+BrailleInvisibleCursorDots=78
+BrailleNormalTextDots=1345
+BrailleBoldDots=12
+BrailleHighlightDots=125
+BrailleItalicDots=24
+BrailleStrikeoutDots=234
+BrailleUnderlineDots=136
+BrailleExtMarkingDots=15
+BraillePCCursorBlinkRate=500
+BrailleJAWSCursorBlinkRate=500
+BrailleInvisibleCursorBlinkRate=500
+BrailleShowLoadError=0
+BrailleAutoDetectBluetooth=0
+; the following is useful when providing field prompts and text in Braille with rich edits
+; 1 is on, 0 is off
+UseScreenModelForBrailleInRichEdits=1
+; SelectedBrailleTranslator indicates which translator from fsBraille.ini is effective if there is more than one in fsBraille.ini.
+; SelectedBrailleTranslator=0 Liblouis
+; SelectedBrailleTranslator=1 Other translator
+SelectedBrailleTranslator=0
+; LibLouis version used
+; 0 = Liblouis 2.6.3
+; 1 = Liblouis 3.3.0
+; 2 = Liblouis 3.5.0
+LiblouisVersion=1
+
+; Legacy Focus display (1.xx)
+; Note for details about each setting, see Braille section.
+;This section only contains settings specific to this display.
+;All other settings are read from the general Braille section.
+[focus]
+AutoAdvanceInterval=5000
+;0 off (fixed), 1 dynamic
+DynamicAutoAdvance=1
+BraillePanMode=255
+AutoPanMode=1
+WordWrap=1
+DotFirmness=4
+PositionOfStatusCells=0
+UseHowManyStatusCells=4
+UseStatusCellsForControlType=1
+StructuredModeAlignToSegment=1
+StructuredModeInclusionFlags=65535
+StructuredModeReverseOrder=1;
+
+; Note for details about each setting, see Braille section.
+;This section only contains settings specific to this display.
+;All other settings are read from the general Braille section.
+[Focus40]
+AutoAdvanceInterval=5000
+;0 off (fixed), 1 dynamic
+DynamicAutoAdvance=1
+BraillePanMode=255
+AutoPanMode=1
+WordWrap=1
+DotFirmness=4
+PositionOfStatusCells=0
+UseHowManyStatusCells=4
+UseStatusCellsForControlType=1
+StructuredModeAlignToSegment=1
+StructuredModeInclusionFlags=65535
+StructuredModeReverseOrder=1;
+
+; Note for details about each setting, see Braille section.
+;This section only contains settings specific to this display.
+;All other settings are read from the general Braille section.
+[FocusXT40]
+AutoAdvanceInterval=5000
+;0 off (fixed), 1 dynamic
+DynamicAutoAdvance=1
+BraillePanMode=255
+AutoPanMode=1
+WordWrap=1
+DotFirmness=4
+PositionOfStatusCells=0
+UseHowManyStatusCells=4
+UseStatusCellsForControlType=1
+StructuredModeAlignToSegment=1
+StructuredModeInclusionFlags=65535
+StructuredModeReverseOrder=1;
+
+; Note for details about each setting, see Braille section.
+;This section only contains settings specific to this display.
+;All other settings are read from the general Braille section.
+[FocusXT14]
+AutoAdvanceInterval=3000
+;0 off (fixed), 1 dynamic
+DynamicAutoAdvance=1
+BraillePanMode=255
+AutoPanMode=1
+WordWrap=0
+DotFirmness=4
+PositionOfStatusCells=2
+UseHowManyStatusCells=0
+UseStatusCellsForControlType=0
+StructuredModeAlignToSegment=1
+StructuredModeInclusionFlags=65535
+StructuredModeReverseOrder=1;
+
+; Note for details about each setting, see Braille section.
+;This section only contains settings specific to this display.
+;All other settings are read from the general Braille section.
+[PMDisplay40]
+AutoAdvanceInterval=5000
+;0 off (fixed), 1 dynamic
+DynamicAutoAdvance=1
+BraillePanMode=255
+AutoPanMode=1
+WordWrap=1
+DotFirmness=4
+PositionOfStatusCells=0
+UseHowManyStatusCells=4
+UseStatusCellsForControlType=1
+StructuredModeAlignToSegment=1
+StructuredModeInclusionFlags=65535
+StructuredModeReverseOrder=1;
+
+; Note for details about each setting, see Braille section.
+;This section only contains settings specific to this display.
+;All other settings are read from the general Braille section.
+[PMDisplay20]
+AutoAdvanceInterval=3000
+;0 off (fixed), 1 dynamic
+DynamicAutoAdvance=1
+BraillePanMode=255
+AutoPanMode=1
+WordWrap=1
+DotFirmness=4
+PositionOfStatusCells=0
+UseHowManyStatusCells=4
+UseStatusCellsForControlType=1
+StructuredModeAlignToSegment=1
+StructuredModeInclusionFlags=65535
+StructuredModeReverseOrder=1;
+
+;This section only contains settings specific to this display.
+;All other settings are read from the general Braille section.
+[ALVA6-32]
+AutoAdvanceInterval=4000
+;0 off (fixed), 1 dynamic
+DynamicAutoAdvance=1
+BraillePanMode=255
+AutoPanMode=1
+WordWrap=1
+DotFirmness=4
+PositionOfStatusCells=0
+UseHowManyStatusCells=4
+UseStatusCellsForControlType=1
+StructuredModeAlignToSegment=1
+StructuredModeInclusionFlags=65535
+StructuredModeReverseOrder=1;
+
+; Note for details about each setting, see Braille section.
+;This section only contains settings specific to this display.
+;All other settings are read from the general Braille section.
+[ALVA6-64]
+AutoAdvanceInterval=6000
+;0 off (fixed), 1 dynamic
+DynamicAutoAdvance=1
+BraillePanMode=255
+AutoPanMode=1
+WordWrap=1
+DotFirmness=4
+PositionOfStatusCells=0
+UseHowManyStatusCells=4
+UseStatusCellsForControlType=1
+StructuredModeAlignToSegment=1
+StructuredModeInclusionFlags=65535
+StructuredModeReverseOrder=1;
+
+[Brailliant BI 14]
+PositionOfStatusCells=2
+UseHowManyStatusCells=0
+
+[OSM]
+
+; Define the possible hooking modes.
+; For HookingMode = 0 refers to the traditional Accessibility Driver.
+; For HookingMode = 1 refers to the new Accessibility Monitor for Screen Capture.
+HookingMode = 0
+; When this option is enabled, Settings Center enables the "Use Accessibility
+; Driver for Screen Capture" control.  This control allows a user to toggle
+; back and forth between the traditional Accessibility Driver and the new
+; Accessibility Monitor for Screen Capture.
+AllowAccessibilityMonitor = 1
+
+
+;Normally, graphics are not passed to newTextEvent, 
+;setting this option to 1 allows changes in graphics to be passed to newTextEvent.
+;This enables scripts to automatically detect changes in visible graphics.
+;For example labelled graphics which indicate a change in status.
+;Frames can also be used to automatically speak changes in graphics if this option is set to 1.
+IncludeGraphicsInNewTextEvent=0
+;0 off, 1 underline spelling errors, 2 underline grammatical errors, 3 underline both.
+;defaults to only underlining spelling errors
+UnderlineProofreadingErrors=1
+
+
+
+;Previous to JAWS 10: Set to 0 for legacy behavior, 1 to copy formatted text from webpage if possible,
+; and 2 to also visually select content onscreen.
+;Starting with JAWS 10: 0 for legacy behavior, and non-zero copy formatted text from webpage if possible and also visually select content onscreen.
+;With JAWS 10 and later, there is no distinction between values 1 and 2.
+VirtualCursorEnhancedClipboard=2
+
+;set to 0 to only include text within cell boundary for line range, 1 to read entire table row
+TableLineSegment=0
+; This option is used to customize the coordinate system that is used by the
+; script functions GetCursorCol, GetCursorRow, GetTextBetween, and
+; SayTextBetween.  The possible values for this option are
+; 0 (Use the default for the active cursor)
+; 1 (Use Column and Row numbers)
+; 2 (Use the pixel location)
+CursorCoordinateSystem=0
+;set to 1 to use custom labels if defined
+UseCustomLabels=1
+; Set to one causes JFW to track the menu bar in Office applications
+TrackCommandBars=1
+
+; Set to one causes MAGic to track the focus rectangle in standard controls
+; that utilize focus rectangles.
+TrackFocusRect=1
+
+; set to 1 if line segments should be included in the Off Screen Model
+; This is required for Excel and other programs which draw a focus rectangle
+IncludeLines=0
+
+; number of milliseconds for JFW to wait before speaking newly written text.
+; Setting this to a non-zero value, may cause terminal programs to
+; respond in a less choppy fashion
+TextOutDelay=0
+
+; set to 1 to Cause JFW to disallow Windows calling the SetSysModalWindow
+; function.  In most cases this is desirable, because System Modal
+;Windows cannot be spoken
+IgnoreSetSysModal=1
+
+; Allows JFW to speak System Modal Message Boxes   0=off, 1 = on
+SpeakSysModalMessageBox=1
+
+; minimum height  of a line  that can be treated as a vertical caret
+VertCaretMinY=4
+
+; maximum height  of a line  that can be treated as a vertical caret
+VertCaretMaxY=110
+
+; minimum width  of a line  that can be treated as a vertical caret
+VertCaretMinX=1
+
+; maximum width  of a line  that can be treated as a vertical caret
+VertCaretMaxX=4
+
+; minimum height  of a line  that can be treated as a horizontal caret
+HorizCaretMinY=1
+
+; maximum height  of a line  that can be treated as a horizontal caret
+HorizCaretMaxY=4
+
+; minimum width  of a line  that can be treated as a horizontal caret
+HorizCaretMinX=4
+
+; maximum width  of a line  that can be treated as a horizontal caret
+HorizCaretMaxX=14
+
+; milliseconds after which  the last draw of the caret becomes invalidated
+CaretTimeOut=1000
+
+; number of pixels to the right of the current JAWS cursor at which a
+; mouse click should be simulated
+MouseClickFudgeX=1
+
+; number of pixels below  the current JAWS cursor at which a
+; mouse click should be simulated
+MouseClickFudgeY=-2
+;If set to 0, an
+; edit prompt will only be found if it immediately precedes the edit
+; field in tab order. When set to 1, more prompts will be foun, but
+; each prompt must be in its own window and that window
+; must be a sibling window of the edit control.
+; When set to 2, the prompt will also be found if it is in the
+; window of the edit control.
+;When set to 3, the prompt will also be found if it is in the
+; grandparent window of the edit control.
+EditPromptSearch=2
+
+; how far away in pixels can an underline be before
+; being considered an actual underline
+UnderlineProximity=0
+
+; when simulating spaces in blank portions of a line, number of pixels
+; represented by each space
+PixelsPerSpace=8
+;how many pixels (high) per blank line
+PixelsPerBlankLine=13
+;When there is blank space between the left of the client area and the first
+;character on a line, the Left Margin setting defines how many pixels to
+;ignore.
+;If the Left Margin setting is greater than the amount of blank it will be
+;reduced so that no text is clipped.
+;Optimized for DOS apps.
+;LeftMargin=5
+LeftMargin=0
+
+
+; Minimum width of a graphic
+GraphicMinX=10
+
+; Maximum width of a graphic
+GraphicMaxX=64
+
+; Minimum height of a graphic
+GraphicMinY=10
+
+; Maximum height of a graphic
+GraphicMaxY=64
+
+; Which graphics to speak
+; 0 means ignore all graphics
+; 1 means speak labeled graphics only
+; 2 means speak all graphics
+IncludeGraphics=2
+
+;0=Store graphic CRC values when the graphics are bein drawn to the
+; screen  ;
+;1=compute them from the screen image at
+;the time they are requested to be spoken
+GraphicsMode=0
+
+; used to trim the size of a braille graphic
+; Useful to preserve the virtical positioning of braille text
+TrimBrailleGraphicLabels=0 or 1
+
+;Whether or not to speak ANSI characters above 126 as "ANSI XXX".
+; 0=never speak these characters as "ANSI XXX"
+; 1=Speak them in TypeingEcho, SayCharacter and SpellWord
+; 2=Also Speak them in SayWord
+;3=Also speak them in SayLine
+; 4=Also speak them in SayAll
+;Dictionary rules for specific characters are not impacted by this
+; setting.  The rules are always processed.
+; UseVirtualPCCursor may have values from 0 through 3.
+; 0 off, 1 on, 2 on in nested panes only, 3 on when not focused in ARIA application.
+; Note the difference between 1 and 3 is that when set to 1, user can exit application mode by pressing numpad Plus twice.
+; When set to 3, user cannot exit application mode as no virtual document is rendered for the application.
+UseVirtualPCCursor=1
+; dialogs whose parent class is Internet Explorer_TridentDlgFrame
+UseVirtualPCCursorInWebDialogs=1
+CaretSearch=255
+
+; Used in some terminal emulation packages.  When true, we mathematically
+; calculate the location of spaces.  This feature should be used cautiously
+; in application specific files.  Misuse can cause characters to disappear
+; in text windows under certain circumstances.
+IgnoreTransparentSpaces=0
+;0 indicate all tables, 1 only indicate data tables
+TableDetection=1
+;Next options used for configuring how data tables are detected
+;This option specifies the minimum number of valid data rows that a table must contain in order
+;for it to be considered a data table.
+TblMinValidDataRows=2
+;This option specifies the minimum number of cells that a row must contain in order for it to be
+;considered a valid data row.
+TblValidRowThreshold=2
+;This option specifies the minimum number of rows which must contain text in order for the
+;table to be considered a data table.
+TblMinTextRows=2
+;This option specifies the minimum number of columns which must contain text in order for the
+;table to be considered a data table.
+TblMinTextColumns=2
+;A cell is considered a valid data cell if it contains at least this number of characters
+TblMinCellTextLength=1
+;A cell is considered a valid data cell if it contains upto this number of characters
+TblMaxCellTextLength=250
+tableIndication=1
+PixelsPerTab=10
+
+;This option enables the TypeKey and TypeCurrentScriptKey to simulate NumPad (non-extended) keys.
+;Otherwise, the NumPad keys are simulated as extended keys.
+;0=disabled, 1=enabled
+TypeKeyNumPadEnabled=0
+; Determines if JAWS uses Console API functions to read the
+;contents of console windows or if it uses the OSM.
+;Using API functions is almost always more accurate.
+;Console windows are those which contain the command prompt and other
+;text-based tools
+; 1= Use API functions, 0=use OSM
+EnhancedConsoleSupport=1
+
+[WindowClasses]
+; Windows 8 Start button
+Start=Button
+;Causes drop down lists to behave with Braille, push alt down arrow in a combo box:
+ComboLBox=ListBox
+;QuickSettings ddialog classes:
+SearchTreeList=TreeView
+FeatureTree=TreeView
+SearchBox=Edit
+;used from within Skype as edit specifically for chats:
+TChatRichEdit=Edit
+;Office-wide global classes
+OpenListView=ListView
+MSOBALLOONREComboBox20W=EditCombo
+REComboBox20W=ComboBox
+REListBox20W=ListBox
+SUPERGRID=ListBox
+OUTEXVLB=ListBox
+WMSUIVLB=ListBox
+SchdmapiVLB=ListBox
+sbutton=Button
+CirrussButton=Button
+ODbcButton=Button
+MSOUNISTAT=Static
+ODb=Dialog
+OArgDlg=Dialog
+NewDlgClass=Dialog
+NUIDialog=Dialog
+_WwN=MultilineEdit
+_WwO=MultilineEdit
+_WwM=ToolTip
+RichEdit20A=Edit
+RichEdit20WPT=Edit
+RICHEDIT60W=Edit
+OKttbx=Edit
+;End of Office-wide class synonyms
+wuDuiListView=ListView
+TabStrip20WndClass=TabControl
+TreeView20WndClass=TreeView
+Slider20WndClass=Slider
+RichEditA=Edit
+VLBClass=ListBox
+;Visual Basic Classes
+ThunderRTCommandButton=Button
+ThunderRTForm=Dialog
+ThunderRT5CheckBox=CheckBox
+ThunderSSOption=Button
+ThunderSSCommand=Button
+ThunderSSCheck=CheckBox
+ThunderCheckBox=CheckBox
+ThunderCommandButton=Button
+ThunderTextBox=Edit
+ThunderComboBox=ComboBox
+ThunderDirListBox=ListBox
+ThunderDriveListBox=ComboBox
+ThunderFileListBox=ListBox
+ThunderFrame=GroupBox
+ThunderListBox=ListBox
+ThunderMenu=Menu
+ThunderOptionButton=RadioButton
+ThunderTimer=TimerControl
+ThunderRT6ComboBox=ComboBox
+ThunderRT6CommandButton=Button
+ThunderRT6OptionButton=RadioButton
+ThunderRT6FormDC=Dialog
+ThunderRT6Frame=GroupBox
+ThunderRT6TextBox=Edit
+ThunderRT6ListBox=ListBox
+ListView20WndClass=ListView
+ThunderRT5CommandButton=Button
+ThunderRT5OptionButton=CheckBox
+ThunderRT5FormDC=Dialog
+ThunderRT5Frame=GroupBox
+ThunderRT5TextBox=Edit
+ThunderRT5ListBox=ListBox
+ThunderRT6UserControlDC=Dialog
+VBBubbleRT6=ToolTip
+VBBubble=ToolTip
+tooltips_class32=ToolTip
+OfficeTooltip=ToolTip
+Tooltips=ToolTip
+ThunderRT6CheckBox=CheckBox
+TButton=Button
+TBitBtn=Button
+TAdvGlowButton=Button
+TCheckbox=CheckBox
+TExtCheckBox=CheckBox
+TORCheckBox=CheckBox
+TAdvOfficeCheckBox=CheckBox
+TRadioButton=RadioButton
+TGroupButton=RadioButton
+TGroupRadioButton=RadioButton
+TAdvOfficeRadioButton=RadioButton
+TRadioGroup=GroupBox
+TGroupBox=GroupBox
+TPanel=GroupBox
+TFrame=GroupBox
+TFlowPanel=GroupBox
+TGridPanel=GroupBox
+TAdvGroupBox=GroupBox
+TStaticText=StaticText
+TLabel=TStaticText
+TEdit=Edit
+TRichEdit=Edit
+TRichEditViewer=Edit;license and readme for InnoSetup installations
+TMemo=Edit
+TInplaceEditList=Edit
+TLabeledEdit=Edit
+TMaskEdit=Edit
+TDateTimePicker=Edit
+TRichEdit=MultilineEdit
+TCaptionMemo=MultilineEdit
+TAddictRichEdit=MultilineEdit
+TORComboEdit=EditCombo
+TListbox=ListBox
+TValueListEditor=ListBox
+TORCalendar=ListBox
+TColorListBox=ListBox
+TCheckListBox=ListBox
+TCombobox=ComboBox
+TComboBoxEx=ComboBox
+TORComboBox=ComboBox
+TColorBox=ComboBox
+TcxGridSite=ListView
+TListView=ListView
+TSystemTreeView=TreeView
+TSystemListView=ListView
+TNFComboBox=ComboBox
+TTreeView=TreeView
+TToolBar=ToolBar
+TStatusBar=StatusBar
+TTrackBar=Slider
+TCaptionEdit=SpinBox
+TTabControl=TabControl
+TPageControl=TabControl
+TAdvOfficePager=TabControl
+TWizardForm=Dialog
+TfrmSplash=Dialog
+TSpellDialogV4=Dialog
+RichTextWndClass=Edit
+;IEServer Windows
+Internet Explorer_TridentLstBox=ListBox
+Internet Explorer_TridentCmbobx=ComboBox
+TextWndClass=Edit
+PasswordWndClass=PasswordEdit
+ComboWndClass=ComboBox
+ButtonWndClass=Button
+RadioWndClass=RadioButton
+CheckBoxWndClass=CheckBox
+ListBoxWndClass=ListBox
+ListWndClass=ListBox
+TextAreaWndClass=Edit
+hh_kwd_vlist=ListBox
+Internet Explorer_TridentDlgFrame=Dialog
+;End of IEServer windows
+ATL:SysListView32=*ListView
+; checkfree
+afx:0:376:baa946=Button
+afx:8:376:0:946=ListBox
+afx:0:376:ed6:86e=Button
+; Microsoft Works
+MSWorksDoc=Edit
+; AOLW Window Classes
+GLBSWizard=Dialog
+_AOL_Modal=Dialog
+_AOL_Button=Button
+_AOL_ListBox=ListBox
+_AOL_Edit=Edit
+_AOL_Glyph=Graphic ; maybe better as "button"
+_AOL_Icon=Button
+_AOL_ComboBox=ComboBox
+_AOL_Static=Static ; prompts for e-mail, etc.
+_AOL_View=Static ; flash sessions descriptions, maybe "edit"
+_AOL_Tree=ListBox ; e-mail list
+Photon.ProgressBar=msctls_progress32
+ListViewWndClass=ListView
+SSTabCtlWndClass=TabControl
+ThunderRT5ComboBox=ComboBox
+; Java classes
+SunAwtDialog=Dialog
+SWT_GROUP=GroupBox
+; Windows Installer classes
+MsiDialogCloseClass=Dialog
+MsiDialogNoCloseClass=Dialog
+BlockedShutdownResolver=Dialog
+
+[MSAAClasses]
+SysListView32=0
+;ListBox=1
+ComboLBox=1
+
+[options]
+; Disable Startup Wizard
+DisplayStartupWizard=0
+
+; Minimum allowable time between live region updates.
+SpeechQueueTimerThreshold=200
+EnableEdge=1 ; 0 = disable Microsoft Edge support, 1 = enable Microsoft Edge support
+
+; Speech Options
+; Note that when the SpeechMode option is set to less speech, 
+; the settings in the LessSpeechMode option control whether this mode results in speech on demand or no speech.
+; 0 = full speech, 1 = less speech
+SpeechMode=0
+; 0 = speech on demand, 1 = mute all speech
+LessSpeechMode=0
+; Following are the three options for configuring what will speak in Speech On Demand:
+; These three settings control what is allowed when SpeechMode is set to less speech and LessSpeechMode is set to speech on demand.
+; Note that the AllowSpeechOnDemandWhenMuted option sets whether or not 
+; the scripts marked as allowable in the Speech On Demand section of the JKM file will speak.
+AllowSpeechOnDemandWhenMuted=1
+AllowMouseEchoWhenMuted=0
+AllowTypingEchoWhenMuted=0
+
+; Fusion Speech Options
+; Note that when the SpeechMode option is set to less speech, 
+; the settings in the LessSpeechMode option control whether this mode results in speech on demand or no speech.
+; 0 = full speech, 1 = less speech
+FusionSpeechMode=0
+; 0 = speech on demand, 1 = mute all speech
+FusionLessSpeechMode=0
+; Following are the three options for configuring what will speak in Speech On Demand:
+; These three settings control what is allowed when SpeechMode is set to less speech and LessSpeechMode is set to speech on demand.
+; Note that the AllowSpeechOnDemandWhenMuted option sets whether or not 
+; the scripts marked as allowable in the Speech On Demand section of the JKM file will speak.
+FusionAllowSpeechOnDemandWhenMuted=1
+FusionAllowMouseEchoWhenMuted=0
+FusionAllowTypingEchoWhenMuted=0
+
+; Touch keyboard options:
+;
+; TouchTypingMode specifies the typing mode for the touch keyboard.
+; 0 = standard typing, 1 = touch typing
+TouchTypingMode=1
+; Touch typing echo sets the echo for the touch keyboard.
+; 0 = off, 1 = characters, 2 = words, 3 = both characters and words
+TouchTypingEcho=3
+; TouchKeyboardNotification controls the type of notification received
+; when the touch keyboard appears and disappears.
+; 0 = by message, 1 = by sound, 2 = by both message and sound
+TouchKeyboardNotification=2
+; TouchKeyboardChildPanelNotification controls the type of notification received
+; when the child panel of alternative characters appears and disappears.
+; 0 = by both message and sound, 1 = by sound only
+TouchKeyboardChildPanelNotification=0
+
+; Web App Reserved Keystrokes
+; 0 = ignore web application keys, 1= use them and bypass their corresponding Quick Navigation keys
+AllowWebAppReservedKeystrokes=1
+;0 Enter simulates mouse click, 1 Enter sends Enter key
+VirtualDocumentLinkActivationMethod=0
+;0 don't allow speech history, 1 allow it to be recorded
+SpeechHistory=1
+;0 off, 1 indicate with sound, 2 speak count, 3 describe all inconsistencies found
+TextAnalyser=0
+;flags bitwise ored together governing which text inconsistencies to detect, see IndicateMismatchedSymbolPairs... in hjconst.jsh
+TextAnalyserTypeFlags=4079
+;flags governing which paired symbols to detect, see CheckParentheses... in hjconst.jsh
+TextAnalyserSymbolFlags=191
+;Use Virtual Ribbon Menu support. 0 off, 1 on. Highlight is always on.
+VirtualRibbonSupport=0
+;the name of the scheme to use during a SayAll
+;leave blank to use default scheme
+SayAllScheme=
+;List of schemes (smf files without extention) to be offered during a sayAll
+SayAllSchemes=Text With Sounds|Text Only
+;1 use wordindex.stp to exclude stopwords in WordIndex, 0 to include all words and disable exception dictionary.
+WordIndexStopwords=1
+;sound played when a layer is activated by pressing the initial key in a key layer sequence
+KeyLayerSound=KeyLayerSound.wav
+;sound for exiting the table layer:
+TableLayerExitSound=TableLayerExit.wav
+
+;; The EnableDocumentReadingHighlighting option is only used when MAGic is
+;; running.  It controls whether or not JAWS/MagUtil should send requests to the
+;; MAGic Engine to highlight each word as it is being spoken during a Say All.
+;; This option has 3 possible values.
+;; 0 - Do not enable the Document Reading Highlighting feature
+;; 1 - Only enable the Document Reading Highlighting feature in the first
+;; generation DOM Server applications such as Internet Explorer, Mozilla Firefox,
+;; and Adobe Reader.
+;; 2 - Enable the Document Reading Highlighting feature in the second generation
+;; DOM Server applications such as Microsoft Word, Rich Edit windows, etc...
+EnableDocumentReadingHighlighting=2
+;0 always generalize, that is, treat nonbreaking space as space, nonbreaking hyphen as hyphen all the time.
+;1 indicate nonbreaking symbols when reading by character, otherwise do not distinguish them
+;2 also indicate when reading by word
+;3 also indicate when reading by line, sentence, paragraph, chunk etc,
+;4 also indicate during a sayAll
+IndicateNonbreakingSymbols=0
+;0 off, distinguish each bullet type, 1 treat all bullets the same and just announce as bullet.
+GeneralizeBullets=0
+;Whether to spell out alphanumeric data such as call signs, number plates, hex strings, etc
+SpellAlphanumericData=0
+;When navigating by words over dates/times/text with adjacent punctuation, we only read the appropriate
+;component of the word navigated to to avoid confusion caused by repeating the entire word.
+; When doing a sayWord however after the movement, it is often desireable to hear the word in its
+;entirety (eg dates/times or text with adjacent punctuation).
+;Setting SmartWordReading to 1 will enable this behaviour
+SmartWordReading=1
+;When SmartWordReading is enabled, the following specifies the rule set to use when doing a SayWord.
+;the name must match one of the TextUnitLocatorRuleSet suffixes.
+SmartWordReadingRule=SmartWordReadingDefault
+;allows the user to maintain a history of up to 20 JAWS Find search patterns in the JAWS Find dialog's Find What combo box.
+MaintainFindHistory=1
+
+;0 off, 1 high level alerts only, 2 medium and high alerts, 3 all alerts
+MSAAAlerts=3
+
+;determines whether the TopEdgeEvent and BottomEdgeEvent will fire, 1=true, 0=false
+TopAndBottomEdgeAlert=0
+
+; use hex or decimal when announcing character value
+SpeakCharacterValueInHex=0
+
+;whether or not to convert a wide char to a multibyte sequence and speak the value of each of the separate characters
+SpeakCharacterValueAsMultibyteSequence=0
+
+;whether or not to indicate (via a beep or sound) when skimming over text units for which the regular expression returns FALSE.
+;0 off, 1 on (beep or play specified sound every 20 units skimmed over
+SkimReadingIndication=1
+SkimReadingIndicationSound=penClickUp
+;0 off, 1 indicate when typing and the editor or wordprocessor wraps to a new line,
+;2 indicate when arrowing left/right or using left/right with modifiers.
+;4 indicate when reading text containing newline characters (by char, word, line, sentence, paragraph or chunk)
+;8 indicate during SayAll
+;bitwise "or" the values together to indicate in multiple contexts
+;eg a value of 3 will indicate when typing and also when arrowing.
+; the method of indication is controlled by the Speech and Sounds scheme in use
+IndicateNewlinesAndParagraphs=0
+;0 don't announce ProgressBar updates,
+;non-zero value specifies time in milliseconds which must elapse before the next update is announced
+ProgressBarUpdateInterval=5000
+TreeViewCheckBoxes=1
+; 0 off, 1 non-ownerdrawn listboxes, 2 also check listboxes with LBS_OWNERDRAWVARIABLE or LBS_OWNERDRAWFIXED window style.
+ListBoxCheckBoxes=0
+;this setting determines what happens when a virtual document loads for which a custom page summary has been defined
+;0 do nothing (a SayAll will be started as normal)
+;1 The summary will be spoken and focus left on the page at the place defined by the page
+;2 the summary will be presented in the virtual viewer for the user to immediately read. The user must press Escape to return to the actual document.
+;Note this setting should generally be set from Personalized Web Settings
+CustomPageSummary=0
+;Whether or not to intercept CreateDIBSection
+;Note that this value is only read once per JAWS session at startup thus changing this value while JAWS is running has no
+;effect.
+
+;Add text processing for various languages by adding dll
+LanguageProcessor=languageprocessor.dll
+
+Scheme=Classic
+;automatic Language detection, 1 on, 0 off
+LanguageDetection=1
+;Whether to generalize dialects to the base language or attempt to switch to each specific dialect.
+GeneralizeDialect=1
+;1 switch synth lang on keyboard lang switch 
+;0 only announce but do not switch synth lang.
+detectKeyboardInputLanguage=1
+;Whether to use information from the virtual HTML area for prompts in
+;Forms mode
+;Warning this will not always result in accurate information,
+;particularly on pages where there are errors in the HTML coding which
+;result in forms mode and virtual mode being out of synchronization
+UseVirtualInfoInFormsMode=0
+; Currently this option is linked to the virtual cursor only
+;0 off, 1 on, 2 only on during SayAll
+QuickKeyNavigationMode=1
+; 0 spell normal, 1 spell phonetic.
+SpellPhonetic=0
+;0 Off,
+;1 indicate caps when spelling or when navigating by character,
+;2 also indicate caps when reading by words
+;3 also indicate caps when reading by lines
+IndicateCaps=1
+; During SayAll, indicate initial cap or capitalized word, 0 off, 1 on
+SayAllIndicateCaps=0
+ProcessToolTipEvent=1
+; determines how often an embedded ActiveX control causes the Virtual HTML area to be updated
+;when receiving rapid ValueChange events from MSAA
+; 0 means allow refresh rate to be dictated by MSAA
+; a positive number means only refresh every X miliseconds
+; -1 means don't refresh at all.
+VIRTUALMSAAREFRESH=0
+; 1=JAWS cursor is tethered to the Pc cursor, i.e.,
+; whenever the Pc cursor moves, the JAWS cursor will follow it.
+; 0=JAWS cursor is indifferent to Pc cursor movements,
+; which has been the traditional behavior
+TetherJAWSToPC=0
+
+;Sets the amount of text which SayAll sends to the synthesizer as a
+; single unit.
+;0=line
+; Use LinePauses = 1 or 0 for line with or without pause
+;1=Sentence
+;2= Paragraph
+SayAllMode=0
+
+; set to 1 to enable announcement of attributes etc in dialogs and menus if the scheme allows for it
+IndicateAttributesInDialogsAndMenus=0
+; Whether or not to indicate repeated characters, 1 on, 0 off
+Repetitions=0
+; whether or not to indicate indentation
+Indentation=0
+; 0=off, 1 = character, 2 = words
+TypingEcho=1
+
+; pressing a key that is not bound to macro will interrupt speech
+; 0=off, 1 = on
+TypingInterrupt=1
+
+; 0=off, 1 = on
+KeyRepeat=1
+; Allows sticky keys to be used, ie ignores shift keys during SayAll.
+; User can use left/right arrow to do same functions
+SayAllIgnoreShiftKeys=0
+; 1=during SayAll, left shift will skip back and right shift will skip forward
+; 0=vice versa
+LeftShiftSkipBack=1
+
+; 0=off, 1= highlight, 2 = all
+ScreenEcho=1
+
+; pressing a key that is bound to a macro will interrupt speech
+; 0=off, 1 = on
+ReadingInterrupt=1
+
+; pause at end of a line
+; 0=off, 1 = on
+LinePauses=0
+
+; process text through the dictionary
+; 0=off, 1 on
+Dictionary=1
+
+; 0=off(handled by synth), 1 = digits, 2 = pairs, 3 = full numbers
+Numbers=0
+; if the number of digits is greater than this threshold then read the number as single digits, otherwise use the above setting.
+SingleDigitThreshold=5
+; If this is set to 1, numbers separated by dashes are read as single digits.
+SpeakNumbersSepByDashesAsDigits=1
+; Indicate case of spoken text with inflection change
+; 0=off, 1 = on
+Case=1
+
+; filter repetitive characters after this many of them
+Filter=3
+
+; words with embedded capital letters are spoken as separate words
+; 0=off, 1 = on
+MixedCase=1
+
+; how much speech to say
+; beginner=0 (most speech), intermediate = 1, advanced = 2 (least speech)
+Verbosity=0
+
+; if JAWS or the synthesizer controls the punctuation
+; 0=synthesizer, 1 = JAWS
+JAWSPunctuationEnabled=1
+
+; Say Window type before window title/text
+; 0=off, 1 = on
+SayWindowTypeFirst=0
+
+; say window state before title/text
+; 0=off, 1 = on
+SayStateFirst=0
+
+; operating mode of insert key   0=JAWS,  1= Sticky
+InsertKeyMode=0
+
+; how many cursor blinks are used to locate the caret
+CaretDetect=1
+
+; The number of milliseconds before JFW will give up looking for the caret
+CaretDetectTimeOut=250
+
+; how fast the caret blinks, milliseconds on/off
+CaretBlinkRate=53
+
+SpeakANSIChars=0
+IndicateSelected=2
+SaySelectedFirst=1
+
+; Which insert keys can be used as a JAWS Insert
+; 0=none
+; 1=Numpad Insert
+; 2=Extended Insert
+; 3=both Numpad and Extended
+JAWSInsertKey=3
+
+; Can be one of the types defined in default.jkm
+KeyboardType=Desktop
+
+;0=Desktop mode
+;1=System Tray mode
+ViewMode=0
+
+; Determines whether Extended and Numpad keys should be processed
+; separately.
+; 0=Treat Extended and Numpad keys the same
+; 1=Differentiate between Extended and Numpad keys
+UseExtendedKeys=0
+
+Acronyms=0
+
+; synthesizer to use
+; Available synthesizers are listed in JfW.INI
+Synthesizer=Synth1
+SleepMode=0
+SynthesizerResetFrequency=2000
+SimultaneousSynthAndWave=0
+BrailleDisplay=Braille1
+DosScreenReader=0
+SayBlankLineCount=0
+UseWindowsKeyboardHook=0
+SayCursorShapeChange=0
+SayNumericDates=0
+SayDollars=0
+bVirtViewer=1
+CharByExample=0
+PhraseByExample=0
+GeneralizeModifiers=1
+OnScreenKeyboard=0
+DisableHideAltKey=0
+DisablePersonalizedMenus=1
+DisableShadowMouse=1
+DisableStickyKey=0
+FormatAndText=0
+Font=0
+Attributes=1
+PointSize=0
+TextColor=0
+BackgroundColor=0
+HookLLMouseInstall=1
+HookLLMouseEnable=1
+HookLLMouseGestureMask=79
+HookLLMouseModifierMask=65535
+HookLLMouseMoveThreshold=64
+
+
+
+;For MouseSpeechEnabled, 0=off, 1=on
+MouseSpeechEnabled=0
+;For MouseSpeechDelay, specify the number of milliseconds to wait after mouse stops moving before speaking; 0 equals no delay.
+MouseSpeechDelay=0
+;For MouseSpeechEchoUnit, 0=character, 1=word, 2=line, 3=paragraph
+MouseSpeechEchoUnit=2
+;For MouseMovementStopsSpeech, 0=off, 1=on
+MouseMovementStopsSpeech=1
+;for MouseEchoSpeaksControlTypeAndState, 0=off, 1=on
+MouseEchoSpeaksControlTypeAndState=1
+;for MouseEchoSpeaksHelpAndDescription, 0=off, 1=on
+MouseEchoSpeaksHelpAndDescription=0
+;for MouseEchoScreenLocationTones, 0=off, 1=on
+MouseEchoScreenLocationTones=0
+;for Mouse speech in Fusion, the startup needs to be different
+MouseSpeechFusionEnabled=1
+
+;For Visual Tracking Highlight Virtual PC Cursor, 0=off, 1=on
+VTUseVirtualPCCursor=0
+;For Visual Tracking Highlight Virtual Ribbon, 0=off, 1=on
+VTUseVirtualRibbon=1
+;For Visual Tracking Highlight Touch Cursor, 0=off, 1=on
+VTUseTouchCursor=1
+;For Visual Tracking Highlight Color RGB Value
+VTcolor=3329330
+;For Visual Tracking Style, 0=box, 1=block, 2=underline
+VTstyle=1
+;For Visual Tracking Transparency, Scale=1-100
+VTtransparency=25
+;For Visual Tracking Thickness, Scale=1-10
+VTthickness=2
+;For Visual Tracking Spacing, Scale=1-10
+VTspacing=2
+
+PromptOverwriteVoiceProfiles=1
+
+; 0 turn off at startup, 1 turn on at startup, 2 do not modify
+InitialNumlockState=0
+
+; Set this to 1 in order to use the legacy method of matching user defined JAWS frames to new
+;   text events.  The legacy method was used by default prior to JAWS 10.0 Update 1.
+; Using the new method, JAWS will match frames that are vertically shorter than a line of text,
+;   even if they are 1 pixel high, with new text written to that area of the screen.  Frames that
+;   are taller than one line of text will need to vertically cover each desired line by at least
+;   half the height of the text in order for JAWS to match the frame with new text written to
+;   those lines.
+; Using the legacy method, frames that were vertically too short, or that overlapped an adjacent line
+;   by a few pixels, completely inhibited new text events for that area of the screen.  This was a bug,
+;   but the behavior was so distinct that we are giving users the ability to have JAWS continue this
+;   behavior.
+UseOldFrameMatchMethod=0
+
+;for LowerOtherAppsVolumeWhileJAWSIsRunning, 0=Off, 1=On
+LowerOtherAppsVolumeWhileJAWSIsRunning=0
+
+[SynthAliases]
+ACCENT="Accent PC/Messenger Internal & Keynote Gold internal/external"
+ACTSAC17="Accent SA or Artic Transport COM1:9600,n,7,1"
+ACTSAC1="Accent SA or Artic Transport COM1:9600,n,8,1"
+ACTSAC27="Accent SA or Artic Transport COM2:9600,n,7,1"
+ACTSAC2="Accent SA or Artic Transport COM2:9600,n,8,1"
+APOLLO2j="Apollo 2"
+ARTIC215="Artic 215"
+AUDAPTC1="Audapter External with driver set to COM1:9600"
+AUDAPTC2="Audapter External with driver set to COM2:9600"
+BNS1="Braille 'n Speak and Type 'n Speak, set to COM1:9600"
+BNS2="Braille 'n Speak and Type 'n Speak, set to COM2:9600"
+DECTALK="DECtalk PC Internal or Express External"
+DUBLTALK="Doubletalk PC Internal"
+INFO37AM="Infovox, American English"
+KRE1="Kurzweil Reading Edge set to COM1:9600"
+KRE2="Kurzweil Reading Edge set to COM2:9600"
+LT1="Doubletalk LT or LightTalk set to COM1:9600"
+LT2="Doubletalk LT or LightTalk set to COM2:9600"
+jsdbltlk="Doubletalk LT or LightTalk set to COM2:9600"
+MVOICE1="Multi Voice set to COM1:9600"
+MVOICE2="Multi Voice set to COM2:9600"
+NOSPEECH="No Speech Output"
+SOUNDBRD="Sounding Board Internal"
+TASSIST="Sound Blaster"
+
+[KeyLabels]
+;Format is
+;	VIRTUAL-KEY-NAME=STATE|LABEL
+; where VIRTUAL-KEY-NAME is the name of a virtual key as defined in
+; the Microsoft winuser.h header file, devoide of the VK_ prefix
+; STATE can be:
+;0=Don't Speak
+;1=Speak
+; and LABEL is a user-defined label to be spoken when that key is pressed
+; The first four special key codes are used to refer to groups of keys
+cancel=1|break
+back=1|Backspace
+tab=1|Tab
+clear=1|Clear
+return=1|Enter
+shift=1|Shift
+control=1|Control
+menu=1|Alt
+pause=1|Pause
+capital=1|Caps lock
+escape=1|Escape
+space=1|Space
+prior=1|Page up
+next=1|Page down
+end=1|End
+home=1|Home
+left=1|Left arrow
+up=1|Up arrow
+right=1|Right arrow
+down=1|Down arrow
+select=1|Select
+execute=1|Execute
+snapshot=1|Print screen
+insert=1|Insert
+delete=1|Delete
+help=1|Help
+numbers=1|Numbers
+letters=1|Letters
+lwin=1|windows
+rwin=1|windows
+apps=1|Applications
+numpad0=1|insert
+numpad1=1|end
+numpad2=1|Down arrow
+numpad3=1|Page down
+numpad4=1|Left arrow
+numpad5=1|5
+numpad6=1|Right arrow
+numpad7=1|home
+numpad8=1|Up arrow
+numpad9=1|Page up
+multiply=1|*
+add=1|+
+separator=1|Separator
+subtract=1|-
+decimal=1|Delete
+divide=1|/
+f1=1|F1
+f2=1|F2
+f3=1|F3
+f4=1|F4
+f5=1|F5
+f6=1|F6
+f7=1|F7
+f8=1|F8
+f9=1|F9
+f10=1|F10
+f11=1|F11
+f12=1|F12
+f13=1|F13
+f14=1|F14
+f15=1|F15
+f16=1|F16
+f17=1|F17
+f18=1|F18
+f19=0|F19
+f20=0|F20
+f21=0|F21
+f22=0|F22
+f23=0|F23
+f24=0|F24
+numlock=1|Num lock
+scroll=1|Scroll lock
+symbols=1|Symbols
+modifiedprintable=1|modified printable
+attn=1|Attention
+crsel=1|Crsel
+exsel=1|Exsel
+ereof=1|applications
+play=1|Play
+zoom=1|Zoom
+pa1=1|Pa1
+oem_clear=1|Clear
+print=1|Print Screen
+
+[MAGicKB KeyLabels]
+16=1|MkLaunchMagic
+17=1|MkVisualEnhancements
+18=1|MkToolbar
+19=1|MkMouseEnhancements
+20=1|MkCursorEnhancements
+21=1|MkColorEnhancements
+22=1|MkFocusEnhancement
+23=1|MkTextViewer
+24=1|MkMagLevelToggle
+25=1|MkResearchIt
+26=1|MkLinksList
+27=1|MkSelectAndSay
+30=1|MkM1
+31=1|MkM2
+32=1|MkM3
+33=1|MkMouseEcho
+34=1|MkKeyboardEcho
+35=1|MkSpeechToggle
+36=1|MkJumpToNextDisplay
+37=1|MkViewLock
+38=1|MkDecreaseRate
+39=1|MkIncreaseRate
+40=1|MkWheelUp
+41=1|MkWheelDown
+43=1|MkWheelClick
+
+[PhoneticSpell]
+a=alpha
+b=bravo
+c=charlie
+d=delta
+e=echo
+f=FoxTrot
+g=golf
+h=hotel
+i=india
+j=juliett
+k=kilo
+l=lima
+m=mike
+n=november
+o=oscar
+p=papa
+q=quebec
+r=romeo
+s=sierra
+t=tango
+u=uniform
+v=victor
+w=whiskey
+x=X ray
+y=yankee
+z=zulu
+
+[OutputModes]
+; for verbosity preferences
+;Set overall speech level
+;settings are as follows:
+; 1=long messages
+; 2=short messages
+SpeechLevel=1|2|2
+NO_DISABLE=1|2|2|Cannot be disabled
+HELP=1|2|2|Help Message
+APP_START=1|0|0|Application Start Message
+ANNOUNCE_POSITION_AND_COUNT=1|2|0|Announce Position and Count when navigating in lists
+JAWS_MESSAGE=1|2|0|JAWS Message
+SCREEN_MESSAGE=1|2|2|Screen Message
+CONTROL_NAME=1|2|2|Control Name
+CONTROL_TYPE=1|2|2|Control Type
+DIALOG_NAME=1|2|2|Dialog Name
+DIALOG_TEXT=1|2|2|Dialog Text
+DOCUMENT_NAME=1|2|2|Document Name
+SELECTED_ITEM=1|2|2|Selected Item
+ITEM_STATE=1|2|2|Item State
+POSITION=1|2|2|Position Information
+ERROR=1|2|2|Error Message
+ITEM_NUMBER=1|2|2|Item Number
+TOOL_TIP=0|0|0|Tool Tip
+STATUS=1|2|2|Status Information
+CONTROL_GROUP_NAME=1|2|0|Control Group Name
+SMART_HELP=1|0|0|Smart Help Messages
+SELECT=1|2|0|Select
+TUTOR=1|1|1|Tutor
+ACCESS_KEY=1|1|1|Access Key
+HELP_BALLOON=1|1|1|Help Balloon
+CONTROL_DESCRIPTION=0|0|0|Control Description
+DEBUG=0|0|0|Debug Message
+TOASTS=1|2|2|Toasts
+; Fusion TUTOR has different defaults
+FTUTOR=0|0|0|Tutor
+
+[VirtualCursorVerbosity]
+; how much structural information to include in the virtual document
+; Low=0 (least speech), Medium = 1 (optimized for most users and most pages), High = 2 (most speech)
+VirtualCursorVerbosityLevel=1
+; Virtual Cursor Verbosity preferences for various levels, listed as High|Medium|Low
+; 1 = announce
+; 0 = do not announce
+BlockQuotation=1|1|0
+Feed=1|1|0
+Figure=1|1|0
+FlashObject=1|0|0
+Frame=1|1|0
+GroupBox=1|1|0
+List=1|1|0
+Log=1|1|0
+Note=1|1|0
+;Also includes treeGrid.
+TableOrGrid=1|1|1
+TabPanel=1|1|0
+Toolbar=1|1|0
+Region=1|0|0
+ApplicationRegion=1|1|0
+ArticleRegion=1|1|0
+BannerRegion=1|0|0
+ComplementaryRegion=1|0|0
+ContentInfoRegion=1|0|0
+DocumentRegion=1|0|0
+FormRegion=1|0|0
+MainRegion=1|1|0
+NavigationRegion=1|1|0
+SearchRegion=1|0|0
+			
+[Voice Profiles]
+ActiveVoiceProfileName=Eloquence
+[Tandem]
+TandemConnectSound=TandemConnect.wav
+TandemDisconnectSound=TandemDisconnect.wav
+IndicateTandemConnectionWithSounds=1
+
+[FormsMode]
+;Forms Mode is transparent to the user
+AutoFormsMode=1
+;When quick nav keys are used to navigate and you land on an edit, how long to wait before disabling quick nav keys so
+;typing keys are passed through
+AutoFormsModeThreshold=-1
+EnterFormsModeSound=boink2.wav
+ExitFormsModeSound=boink1.wav
+IndicateFormsModeWithSounds=1
+;MAGic uses this to suppress indication of forms mode changes
+SpeakFormsModeChanges=1
+;Note the next setting is irrelevant when AutoformsMode is enabled.
+;Whether or not Forms Mode is automatically turned off when the current page is updated
+;1 means turn forms mode off automatically (default), 0 means leave Forms Mode on
+FormsModeAutoOff=1
+
+[HTML]
+;The sound to play for embedded link indication
+EmbeddedLinkSound=Click6.wav
+;If 1, char and word navigation move by control rather than char or word in the virtual buffer.
+;If 2, cells are also treated as units. 
+SmartNavigation=0
+;0 don't filter consecutive duplicate links (links pointing to same URL)
+;1 filter duplicate links
+FilterConsecutiveDuplicateLinks=1
+IndicateGroupStartAndEnd=1
+;the ReadOnlyState is actually a suppress read-only state key, 0 = announce and 1 = ignore
+ReadOnlyState=0
+
+;Turn on live region update announcement only in specific applications where they are expected to be used:
+; 0=off, 1=on
+AnnounceLiveRegionUpdates=0
+
+;whether or not to include empty anchors <a href="someURL.htm"></a> with no inner text or images
+IncludeEmptyAnchors=1
+; When reading column header cells, should JAWS read the most specific header first or last
+TblSpeakMostSpecificColumnTitleFirst=0
+;Whether or not to support embedded active x controls such as Macromedia Flash Movies
+;set to 0 to ignore, 1 to support
+;note only objects defined in JActiveX.ini are affected by this setting
+EmbeddedActiveXSupport=1
+;0 don't indicate HTML attributes, 1 indicate any defined in the HTML Attributes Behavior map of the current scheme
+IndicateElementAttributes=1
+;0 favor label tag, 1 favor title attribute, 2 favor alt attribute, 3 favor longest, 4 use both label and title if different,
+;5 use both label and alt if different
+FormFieldPromptOptions=0
+;When a graphical link contains no title or alt text for its enclosing image and the enclosing anchor has no title
+;What should we render as a last resort?
+;0 for the image's src and 1 for its enclosing anchor's href
+GraphicalLinkLastResort=0
+;Whether or not to allow navigation keystrokes such as tab and shift tab to wrap to the top or bottom of the document
+WrapNavigation=1
+;whether or not to expand abbreviations (using the abbr tag)
+ExpandAbbreviations=0
+;whether or not to expand acronyms (using the acronym tag)
+ExpandAcronyms=0
+;Inline frames are often used for advertising
+;0 do not ignore inline frames, 1 ignore them
+IgnoreInlineFrames=0
+;0 allow all refreshes, a positive number to ensure that refreshes don't occur before the value
+;of milliseconds has elapsed.
+;eg PageRefreshFilter=10000 will ensure that the page refreshes don't occur within 10 seconds of each other
+PageRefreshFilter=0
+;0 don't include HTML Element access keys, 1 include them
+AccessKeys=1
+; 0 means to never include graphics
+; 1 means to include graphics that have labels, i.e. alt=attributes
+; 2 means to include all graphics
+IncludeGraphics=1
+;0 means favor title attribute, 1 favor alt attribute,
+;2 favor singly quoted string in OnMouseOver, 3 favor longest
+;4 use custom search
+GraphicRenderingOption=1
+; use vertical bar delimited list of attributes to search, eg title|alt|src
+CustomGraphicAttrs=title|alt|src
+; 0 means to never include graphical links
+; 1 means to include graphical links  that have labels, i.e. alt=attributes
+; 2 means to include all graphical links
+IncludeGraphicLinks=2
+
+; 0 means to never include image map links
+; 1 means to include image map links  that have labels, i.e. alt=attributes
+; 2 means to include all image map links
+IncludeImageMapLinks=2
+
+; 1 means to identify the various types of links e.g. FTP
+; link, SendMail Link, Graphic Link
+;0 means to just say "link" for all of these
+IdentifyLinkType=1
+
+; 1 means to identify links that point to other places on the current
+; page by saying "Same Page Link"
+IdentifySamePageLinks=1
+
+; The maximum number of characters which can appear on a line of a paragraph
+MaxLineLength=150
+
+; The number of consecutive characters that must appear for JAWS to
+; treat this as a block of text
+TextBlockLength=25
+
+; 1 means that the screen will automatically scroll to display the line
+; on which the VCursor is positioned
+ScreenFollowsVCursor=1
+
+; 1 means that whenever a new page is displayed, position the VCursor
+; on the first line which is different than the previous page
+SkipPastRepeatedText=1
+;For Heading Indication, 0=off, 1=heading, 2=heading and level
+;3=play sound, 4=use voice alias, used in conjunction with controlType voice table entry for each heading control type
+HeadingIndication=2
+LinesPerPage=24
+;0 favor title, 1 favor screen text,
+;2 favor alt attribute, 3 favor longest,
+;4 use custom search string
+LinkText=1
+;use vertical bar delimited list of attributes to search, eg title|alt|href
+; use special attribute value of screentext to use onscreen text
+CustomTextLinkAttrs=text|title|alt|href
+;0=title, 1=screen text, 2=alt, 3=value, 4=longest, 5=custom
+ButtonTextOptions=1
+CustomButtonAttrs=text|title|alt|value
+;How to process style sheets
+;0 = ignore all of them
+;1=process top level style sheets only
+;2=process both top level and imported style sheets.
+;		default=1
+;		Ideally the default would be 2, but there is a bug in IE
+;		that causes IE to crash on certain pages if from within JAWS we
+;		load imported style sheet information.
+; The 0 option is reserved for use in those extreme situations where
+; certain pages may appear blank in the virtual buffer when they
+; actually have contents on the screen.
+StyleSheetProcessing=2
+
+; how to visuallly lay out
+; text in the virtual buffer
+; standard layout = 0
+; visual layout = 1
+; Enhanced Visual Layout = 2
+DocumentPresentationMode=0
+; Causes the JAWS Document Presentation Mode to be used for MAGic instead of the MAGic specific Enhanced Visual Layout.
+; Normally JAWS ignores the DocumentPresentationMode option and forces the use of the Enhanced Visual Layout Document
+; Presentation Mode to be used when MAGic is in use. This causes problems for people who use JAWS and MAGic together
+; with Braille. Now users can set this option in Default.JCF to cause the JAWS Document Presentation Mode to be used
+; instead.
+; Note: Currently the only way to set this option is to manually edit Default.jcf.
+UseJAWSDocumentPresentationModeForMAGic=0
+
+; when DocumentPresentation mode is on
+; indicate table cells that span multiple columns by adding a | for each column spanned
+; 0 = 1 | per table cell
+; 1 = 1 or more | per table cell
+IndicateColSpan=1
+DocPresModeMaxLineLength=500
+
+;Whether or not to automatically read virtual documents on load
+;JAWS version
+SayAllOnDocumentLoad=1
+;Fusion version
+SayAllOnDocumentLoadFusion=0
+
+[Spoken Language Names]
+en=English
+en-au=Australian English
+en-nz=New Zealand English
+en-ie=Irish English
+en-ca=Canadian English
+enu,en-us,us-en=U S English
+ru,rus=Russian
+ar,ara,arb,arc,are,arg,ari,arj,ark,arl,arm,aro,ars,arq,art,aru,ary=Arabic
+gre,el,ell=Greek
+dut,nld,nl=Dutch
+fr,fra,fre=French
+frc,fr-ca=Canadian French
+es,esl,esp,spa=Castillian Spanish
+cat,ca=Catalan
+scc,srp,sr=Serbo-Croat
+scr,hrv,hr=Croatian
+it,ita=Italian
+rum,ron,ro=Romanian
+cze,ces,cs=Czech
+slo,slk,sk=Slovak
+eng,en-gb,en-uk=UK English
+wel,cym,cy=Welsh
+da,dan=Danish
+swe,sv=Swedish
+nno,nn,nob,nb=Norwegian
+pol,pl=Polish
+de,deu,ger=German
+esm,esu,esx=Latin American Spanish
+ptb,pt-br=Brazilian Portuguese
+may,msa,ms=Malay
+ind,id=Indonesian
+mao,mri,mi=Maori
+jpn,ja=Japanese
+chi,zho,zh=Chinese
+tur,tr=Turkish
+ira=Iranian
+swa,sw=Swahili
+ice,isl,is=Icelandic
+por,pt=Portuguese
+mga,sga=Irish
+lt,mt=Maltese
+fi,fin=Finnish
+bul,bg=Bulgarian
+lit,lt=Lithuanian
+lav,lv=Latvian
+st,et=Estonian
+heb=Hebrew
+th,tha=Thai
+
+[Braille OutputModes]
+;  for verbosity preferences
+;  Set overall braille level
+;  settings are as follows:
+;  1=long messages
+;  2=short messages
+BrailleLevel=1|2|2
+NO_DISABLE=1|2|2|msg
+HELP=1|2|2|hlp
+APP_START=1|0|0|app
+JAWS_MESSAGE=1|2|0|jm
+ERROR=1|2|2|err
+TOOL_TIP=0|0|0|tip
+STATUS=1|2|2|sts
+SMART_HELP=1|0|0|shlp
+TUTOR=0|0|0|ttr
+HELP_BALLOON=1|1|1|bln
+USER_REQUESTED_INFORMATION=1|2|2|usr
+DEBUG=0|0|0|dbg
+TOASTS=1|2|2|tst
+MouseEcho=1|1|1|me
+
+[RichEdit and Edit Control Options]
+;Set to 1, Traditional behaviour, edits and Richedits use OSM for reading
+;Set to 0, we ask the control for information directly
+UseOSM=0
+;When asking the edit control directly, if the document is larger than this threshold we'll fall back to using the OSM since the control's response to our
+;queries is too slow causing sluggishness.
+UseOSMThreshold=750000
+;0 off, 1 indicate annotations but don't read text of annotation, 2 indicate annotation and also read the annotation inline.
+ExpandAnnotationsInline=0
+;determines if JAWS requests marked up content from Richedit controls or Microsoft Word in order to
+;provide Speech and Sounds Scheme support.
+;Setting this to 0 will provide enhanced navigational performance at the expense of no Speech and Sound
+;Scheme support.
+;Users of MSWord who wish to use the Paste As Hyperlink feature will need to set this to 0 during their
+;copy and paste as hyperlink operation as the requesting of marked up content is incompatible with this
+;feature.
+RequestMarkedUpContent=1
+[Braille Viewer]
+;Set to 1 causes the desktop to be resized to make room for the Braille Viewer.
+;Set to 0 causes the Braille Viewer to be overlayed on top of the desktop.
+LockToDesktop=1
+
+;Sections defining Text Unit Navigation parameters
+;These modify the way cursors move and retrieve text units such as words and sentences
+;rules with a name of the form [TextUnitRuleSet CursorName] will be the default rule for a given cursor
+; Note that UserBuffer, Lotus and FSDom virtual cursors all use the name VirtualPCCursor
+;Richedit 1.0 cursor used for richedit 1.0 applications when Enhanced edit mode is on use the name Richedit1Cursor.
+;All apps using the FSDom Edit 2 cursor such as Richedit 2.x and higher with Enhanced edit mode use FSDomEdit2Cursor.
+;All cursors which don't have their own section use the default rule.
+;Note that if a window class name follows the cursor name, that rule set will be used when that cursor is active for that window class.
+;rules which are not linked to a cursor and class must be switched to via scripts using the SwitchToTextUnitRuleSet function.
+;Note WordSymbols are symbols which constitute a word by themselves
+;There are two types:
+;1. WordStandAloneSymbols: if the cursor lands on one of these and it has other symbols either side of it, the single symbol is treated as a word. This is
+;useful when a text editor moves from symbol to symbol with control left or right arrow and we thus only want to hear the symbol being landed on.
+;2. WordRunSymbols: If the text editor moves from the first punctuation symbol in a run of symbols to the next alphanumeric or group of symbols, then the
+;whole run of consequtive symbols are treated as a single word.
+;Even though WordSymbols may be defined, they will only be honoured if the BreakAtWordSymbols option is on, otherwise other rules take precedence.
+;the MathMode option must be on for the Math Operators and operator binding to take effect.
+;Precedence: math rules, WordSymbols, numberSeparators, left/right delimiters.
+;note a right or left delimiter is kept with the text that preceeds it or follows it.
+;default text unit locator rules used for JAWS, Invisible and virtual cursors
+[TextUnitRuleSet default]
+MathOperators=+-*/=<>
+NumberSeparators=./,-:
+WordStandAloneSymbols=
+WordRunSymbols=!#^*-+=\|"<>./
+LeftWordDelimiters=�$([{u+20acu+201c
+RightWordDelimiters=:;)}]?%�u+2122u+201d
+SentenceTerminators=.?!
+MathMode=0
+MathOperatorBinding=1
+BreakAtWordSymbols=1
+
+;PCCursor rules suitable for Wordpad and other richedit 2+ environments
+;(enhanced edit mode off for wordpad)
+;used by default for PCCursor
+[TextUnitRuleSet PCCursor]
+MathOperators=+-*/=<>"
+NumberSeparators=
+WordStandAloneSymbols=
+WordRunSymbols=!@#�$%^&*()-+=\|;:",<>./?[]{}�
+LeftWordDelimiters=U+21acu+201c
+RightWordDelimiters=u+2122u+201d
+SentenceTerminators=.?!
+MathMode=0
+MathOperatorBinding=1
+BreakAtWordSymbols=1
+
+[TextUnitRuleSet JAWSCursor]
+MathOperators=+-*/=<>
+NumberSeparators=./,-:
+WordStandAloneSymbols=u+00b6
+WordRunSymbols=!#^*-+=\|">.,
+LeftWordDelimiters=�$([{u+20acu+201c
+RightWordDelimiters=:;)}]?%�u+2122u+201d
+SentenceTerminators=.?!
+MathMode=0
+MathOperatorBinding=1
+BreakAtWordSymbols=1
+
+[TextUnitRuleSet InvisibleCursor]
+MathOperators=+-*/=<>
+NumberSeparators=./,-:
+WordStandAloneSymbols=u+00b6
+WordRunSymbols=!#^*-+=\|">.,
+LeftWordDelimiters=�$([{u+20acu+201c
+RightWordDelimiters=:;)}]?%�u+2122u+201d
+SentenceTerminators=.?!
+MathMode=0
+MathOperatorBinding=1
+BreakAtWordSymbols=1
+
+;settings suitable for notepad and standard edits or richedit 1.x environments
+; Enhanced edit mode on
+;East Asian Language Support off
+[TextUnitRuleSet RichEdit1Cursor]
+MathOperators=+-*/=<>"
+NumberSeparators=-
+WordStandAloneSymbols=
+WordRunSymbols=U+2122
+LeftWordDelimiters=[({U+20acu+201c
+RightWordDelimiters=])}?!%u+201d
+SentenceTerminators=.?!
+MathMode=0
+MathOperatorBinding=1
+BreakAtWordSymbols=1
+
+;settings suitable for notepad and standard edits or richedit 1.x environments
+; Enhanced edit mode on
+;East Asian Language support on
+[TextUnitRuleSet RichEdit1Cursor IMESupport]
+MathOperators=+-*/=<>"
+NumberSeparators=
+WordStandAloneSymbols=-
+WordRunSymbols=U+2122
+LeftWordDelimiters=[({U+20acu+201c
+RightWordDelimiters=])}?!%u+201d
+SentenceTerminators=.?!
+MathMode=0
+MathOperatorBinding=1
+BreakAtWordSymbols=1
+
+
+;settings suitable for notepad and standard edits or richedit 1.x environments
+; Enhanced edit mode off
+;East Asian language support on
+[TextUnitRuleSet PCCursor edit IMESupport]
+MathOperators=+-*/=<>"
+NumberSeparators=
+WordStandAloneSymbols=-
+WordRunSymbols=U+2122
+LeftWordDelimiters=[({U+20acu+201c
+RightWordDelimiters=])}?!%u+201d
+SentenceTerminators=.?!
+MathMode=0
+MathOperatorBinding=1
+BreakAtWordSymbols=1
+
+;settings suitable for notepad and standard edits or richedit 1.x environments
+; Enhanced edit mode off
+;East Asian language support off
+[TextUnitRuleSet PCCursor edit]
+MathOperators=+-*/=<>"
+NumberSeparators=-
+WordStandAloneSymbols=
+WordRunSymbols=U+2122
+LeftWordDelimiters=[({U+20acu+201c
+RightWordDelimiters=])}?!%u+201d
+SentenceTerminators=.?!
+MathMode=0
+MathOperatorBinding=1
+BreakAtWordSymbols=1
+
+;Used when SmartWordReading is enabled and the user executes a SayWord
+[TextUnitRuleSet SmartWordReadingDefault]
+MathOperators=+-*/=<>
+NumberSeparators=./,-:
+WordStandAloneSymbols=
+WordRunSymbols=!#^*+=\|"<>./
+LeftWordDelimiters=�$([{u+20acu+201c
+RightWordDelimiters=:;)}]?%�u+2122u+201d
+SentenceTerminators=.?!
+MathMode=0
+MathOperatorBinding=1
+BreakAtWordSymbols=1
+
+[TextUnitRuleSet FSDomEdit2Cursor]
+MathOperators=+-*/=<>"
+NumberSeparators=
+WordStandAloneSymbols=
+WordRunSymbols=!@#�$%^&*()-+=\|;:",<>./?[]{}�_
+LeftWordDelimiters=U+fffcu+201c
+RightWordDelimiters=u+2122u+201d
+SentenceTerminators=.?!
+MathMode=0
+MathOperatorBinding=1
+BreakAtWordSymbols=1
+
+;Web Resources menu which exists in the JAWS Help menu.
+; NOTE: If you need to insert the & character in the menu item then insert 2 & characters.
+; For example, If you want the menu item "News & Local Weather" with the access key of W for Weather,
+; the left of the equal sign should be "News && Local &Weather"
+[Web Resources]
+&JAWS Headquarters=http://www.freedomscientific.com/JawsHQ/jawsHeadquarters01
+Technical &Support=http://www.freedomscientific.com/Support/TechnicalSupport
+FS &Activate=http://www.freedomscientific.com/Support/Activation
+Surfing the &Internet=http://www.freedomscientific.com/Training/Surfs-Up/_Surfs_Up_Start_Here.htm
+&MAGic Screen Magnification=http://www.freedomscientific.com/Products/LowVision/MAGic
+&Training Headquarters=http://www.freedomscientific.com/Services/TrainingAndCertification
+&PAC Mate Headquarters=http://www2.freedomscientific.com/products/pacmate-hq.asp
+Free Training &Webinars=http://www.freedomscientific.com/Services/TrainingAndCertification/FreeWebinars
+www.&freedomscientific.com=http://www.freedomscientific.com/
+FS&Cast homepage=http://www.freedomscientific.com/About/FSCast
+
+[Research It Options]
+Primary=LiveResourceLookup:LRL_Wiktionary
+MaintainPhraseHistory=1
+
+;Research It Exclusions contains LookupModule:RuleSet pairs that are disabled by the user
+;through the Configuration Manager Research It Options dialog.
+[Research It Exclusions]
+
+;Research It Phrase History contains search history from the Research It dialog.
+[Research It Phrase History]
+
+;This section is used to override internal keys used for simulating commands sent to applications.
+;For example, in Spanish JAWS, control+e is used instead of control+a to select all.
+;Here is where this is defined.
+[Command Keys]
+SelectAll=control+a
+
+[JAWSFind]
+ContextSpecificFindHistory=1
+PurgeAfter=90
+
+
+[NonJCFOptions]
+;These used to be managed by global variables only.
+;With Quick Settings, these are now read from the file on QuickSettings dialog exit,
+;QuickSet.jss loadNonJCFOptions
+;These are not handled or expected internaly, except via the xml (.qs file)
+;Braille Study Mode:
+;For FS Braille displays who are Study Mode Capable:
+BrailleStudyModeActive=0 ; will only enable itself if capable display and user sets it.
+;Braille Table zoom to or display
+; CURRENT_CELL=0,
+; CURRENT_ROW=1,
+; CURRENT_COL=2
+BrlTBLZoom=0
+;Braille show titles in Tables:
+;ROW=1,
+;COLUMN=2,
+;BOTH=3
+BrlTblHeader=0
+;Whether or not to Braille table coordinates:
+BrlShowCoords=1
+;Virtual.jsi file options moved to NonJCFOptions section as well:
+;Whether or not to automatically read virtual documents on load:
+SayAllOnDocumentLoad=1
+;Table Titles Announce:
+;	TBL_HEADER_ROW=1,
+;	TBL_HEADER_COL=2,
+;	TBL_HEADER_BOTH=3,
+;	TBL_HEADER_MARKED=4,
+TblHeaders=4
+;Whether or not to announce cell coordinates:
+;0 don't announce, 1 announce
+DefaultVCursorCellCoordinatesAnnouncement=1
+
+;TouchCursorNavigationMode specifies the navigation mode of the touch cursor keyboard.
+;0 = non-advanced navigation, 1 = advanced navigation.
+TouchCursorNavigationMode=0
+;AutomaticTouchCursorActivation specifies whether JAWS is set to
+;automatically activate the touch cursor navigation mode when the application gains focus.
+;0 means that touch cursor is not automatically activated for the application,
+;1 means that the touch cursor is automatically activated for the application.
+AutomaticTouchCursorActivation=0
+;TouchRotorInitialType specifies the element type to which the touch rotor is initially set.
+;The rotor specifies the type of element moved to by flick up and down.
+;The types for the rotor are:
+;1=Regions, 2=Headings, 3=ListItems, 4=Buttons, 5=Links, 6=Groups, 7=Landmarks, 8=FormControls.
+TouchRotorInitialType=1
+;TouchQuickKeyNavigationMode determines whether the object navigation quick keys are enabled.
+;1 means enabled, 0 disabled.
+TouchQuickKeyNavigationMode=0
+;If UseTouchNavigationSounds is set to 1,
+;JAWS uses the sounds from the TouchNavigationSounds section.
+;otherwise, JAWS speaks messages for the events.
+UseTouchNavigationSounds=1
+InterruptSpeechWhenADialogBoxIsCreated=0
+
+[Touch]
+TapEventDurationMax=210
+TapInterEventDurationMax=600
+TapTranslationMax=20
+FlickVelocityMin=67
+
+[TouchNavigationSounds]
+;TouchNavigateSound is played when navigating with the touch cursor.
+TouchNavigateSound=TouchNavigate.wav
+;TouchNavigationErrorSound is used to indicate that the attempted action failed.
+;this includes:
+;navigation failed to move,
+;text review did not activate because there is no text to review,
+;an attempted cursor routing action is not valid,
+;and other actions which fail during touch cursor navigation.
+TouchNavigationErrorSound=TouchNavigationError.wav
+;TouchClickSound is used when the element at the touch cursor is tapped, or invoked.
+TouchClickSound=TouchClick.wav
+;TouchTextReviewActivationSound is used when the text review mode of touch navigation is deactivated:
+TouchTextReviewActivationSound=TextReviewOn.wav
+;TouchTextReviewDeactivationSound is used when the text review mode of touch navigation is activated:
+TouchTextReviewDeactivationSound=TextReviewOff.wav
+;Gesture sounds are played when gestures are used for specific actions,
+;and are not intended to be played with touch navigation using the keyboard.
+;Whether or not the gesture sounds play, like touch navigation sounds, is controlled by the UseTouchNavigationSounds option.
+GestureEscapeSound=GestureEscape.wav
+GestureCloseAppSound=GestureCloseApp.wav
+;TouchKeyboardOpened/Closed sounds are played when the touch keyboard appears on or disappears from the screen.
+TouchKeyboardOpened=TouchKeyboardOpened.wav
+TouchKeyboardClosed=TouchKeyboardClosed.wav
+;TouchKeyboardChildPanelOpened/Closed sounds are played when a key expands or collapses a panel of extra related keys
+TouchKeyboardChildPanelOpened=TouchKeyboardChildPanelOpened.wav
+TouchKeyboardChildPanelClosed=TouchKeyboardChildPanelClosed.wav
+;TouchKeyboardExploreEntered/Exited sounds are played when exploration enters or exits
+;the area of the screen where the touch keyboard is located
+TouchKeyboardExploreEntered=TouchKeyboardExploreEntered.wav
+TouchKeyboardExploreExited=TouchKeyboardExploreExited.wav
+;TouchKeyboardChildPanelBoundary sound is played when a panel of extra keys is showing
+;and exploration crosses the boundary between the pane of extra keys and the main keyboard keys
+TouchKeyboardChildPanelBoundary=TouchKeyboardChildPanelBoundary.wav
+;TouchKeyboardKey is played when exploring the touch keyboard and a new key is moved to
+TouchKeyboardKey=TouchKeyboardKey.wav
+;TouchExploreEmptyArea is played repeatedly when it is determined that exploration is on a blank area of the screen
+TouchExploreEmptyArea=TouchExploreEmptyArea.wav
+;TouchExploreOutsideVirtualViewer is played repeatedly when the virtual viewer is on the screen and touch is outside of the virtual viewer window
+TouchExploreOutsideVirtualViewer=TouchExploreOutsideVirtualViewer.wav
+
+[TouchNavigationTypes]
+;this section specifies the types of controls that are available for the non-advanced mode of touch navigation.
+;When set to 1, the control type is available in touch navigation if it exists in the application.
+;when set to 0, the control type is not available.
+UIA_ButtonControlTypeId=1
+UIA_CalendarControlTypeId=1
+UIA_CheckBoxControlTypeId=1
+UIA_ComboBoxControlTypeId=1
+UIA_CustomControlTypeId=1
+UIA_DataGridControlTypeId=1
+UIA_DataItemControlTypeId=1
+UIA_DocumentControlTypeId=1
+UIA_EditControlTypeId=1
+UIA_GroupControlTypeId=1
+UIA_HeaderControlTypeId=1
+UIA_HeaderItemControlTypeId=1
+UIA_HyperlinkControlTypeId=1
+UIA_ImageControlTypeId=1
+UIA_ListControlTypeId=1
+UIA_ListItemControlTypeId=1
+UIA_MenuBarControlTypeId=1
+UIA_MenuControlTypeId=1
+UIA_MenuItemControlTypeId=1
+UIA_PaneControlTypeId=1
+UIA_ProgressBarControlTypeId=1
+UIA_RadioButtonControlTypeId=1
+UIA_ScrollBarControlTypeId=1
+UIA_SeparatorControlTypeId=1
+UIA_SliderControlTypeId=1
+UIA_SpinnerControlTypeId=1
+UIA_SplitButtonControlTypeId=1
+UIA_StatusBarControlTypeId=1
+UIA_TabControlTypeId=1
+UIA_TabItemControlTypeId=1
+UIA_TableControlTypeId=1
+UIA_TextControlTypeId=1
+UIA_ThumbControlTypeId=1
+UIA_TitleBarControlTypeId=1
+UIA_ToolBarControlTypeId=1
+UIA_ToolTipControlTypeId=1
+UIA_TreeControlTypeId=1
+UIA_TreeItemControlTypeId=1
+UIA_WindowControlTypeId=1
+;Note that the following are not UIA types, but are aria roles available for the UIA object:
+heading=1
+region=1
+
+[OCR]
+PrimaryRecognitionLanguage=1033
+SecondaryRecognitionLanguage=1033
+;MotionDetectMultipageAcquisitionTimeout specifies the duration in milliseconds 
+;when JAWS will automatically end the recognition if no motion has been detected on the camera
+MotionDetectMultipageAcquisitionTimeout=30000
+
+[CommandsSearch]
+;FilterRanks will filter all the script entries in the JSD file which have a DisplayName and a SearchRank with the value specified below.
+;If you want to filter multiple ranks, make is a comma delimited list.  For example, FilterRanks=4,3
+FilterRanks=4
+QuickNavKeyApps=word|Internet Explorer|Firefox|Outlook 2007|Outlook 2010|Outlook 2013
+
+[FsCasts]
+EnableNotifications=0
+RSSFeed=https://www.freedomscientific.com/FSCast/rss.xml
+StartDate=2016/03/15
+
+[AutoRestart]
+Enable=1       ; 1=Enabled, 0=disable, 1 is default
+CreateDumps=0   ; 0=don't create dumps, 1=create dumps, 0 is default
+Delay=30        ; time in seconds, 30 is the default, minimum  is 10, maximum is 900
+Warnings=1      ; Number of warnings before restart, 1 is default, minimum  is 0, maximum is 100
+
+; Sounds can be added where JAWS will play a sound file at each warning
+; Using the default configuration JAWS will play sound1 after 15 seconds
+; of being hung.  After 30 seconds of being hung it will play Sound2 just
+; before restarting JAWS.  No sound needs to be specified. 
+Sound1=         ; first warning sound, defaults to (no sound) 
+Sound2=         ; second warning sound, defaults to (no sound) 
+
+[AutoRestartAppSettings]
+; Add application name here for a longer delay time
+; The delay time is in seconds or the infinite
+; 
+; Example
+; notepad=60
+; outlook=infinite
+
+[UiaScriptSupport]
+QBW32=0
+
